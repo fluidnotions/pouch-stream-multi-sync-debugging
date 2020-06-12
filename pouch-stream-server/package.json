@@ -23,17 +23,6 @@
     "url": "https://github.com/pgte/pouch-stream-server/issues"
   },
   "homepage": "https://github.com/pgte/pouch-stream-server#readme",
-  "devDependencies": {
-    "code": "^1.5.0",
-    "eslint": "^1.6.0",
-    "istanbul": "^0.3.21",
-    "lab": "^6.1.0",
-    "memdown": "^1.1.0",
-    "pouch-remote-stream": "0.2.0",
-    "pouchdb": "^5.0.0",
-    "pouch-stream-tests": "0.2.0",
-    "pre-commit": "^1.1.1"
-  },
   "dependencies": {
     "debug": "^2.2.0",
     "xtend": "^4.0.0"
