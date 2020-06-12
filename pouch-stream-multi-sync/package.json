@@ -1,0 +1,45 @@
+{
+  "name": "pouch-stream-multi-sync",
+  "version": "0.3.0",
+  "description": "Sync several PouchDBs through a stream.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --harmony node_modules/istanbul/lib/cli.js cover -- lab -vl && istanbul check-coverage",
+    "style": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pgte/pouch-stream-multi-sync.git"
+  },
+  "author": "pgte",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pgte/pouch-stream-multi-sync/issues"
+  },
+  "homepage": "https://github.com/pgte/pouch-stream-multi-sync#readme",
+  "tags": [
+    "pouchdb",
+    "stream",
+    "sync"
+  ],
+  "dependencies": {
+    "debug": "^2.2.0",
+    "pipe-channels": "^0.1.1",
+    "pouch-remote-stream": "^0.3.0",
+    "pouch-stream-server": "^0.2.1",
+    "reconnect-core": "^1.1.0",
+    "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "code": "^2.0.1",
+    "eslint": "^1.10.1",
+    "istanbul": "^0.4.0",
+    "lab": "^7.3.0",
+    "memdown": "^1.1.0",
+    "pouchdb": "^5.1.0"
+  },
+  "pre-commit": [
+    "style",
+    "test"
+  ]
+}

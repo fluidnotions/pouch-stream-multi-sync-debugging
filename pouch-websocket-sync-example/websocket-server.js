@@ -1,5 +1,6 @@
 const http = require('http');
-const PouchDB = require('pouchdb');
+const PouchDB = require('pouchdb')
+  // .plugin(require('pouchdb-adapter-leveldb'))
 const PouchSync = require('pouch-websocket-sync');
 
 const server = http.createServer();
@@ -10,6 +11,10 @@ wss.on('error', function(err) {
 });
 
 const db = new PouchDB('todos-server');
+setInterval(() => {
+  db.allDocs({ include_docs: true }).then(console.log)
+}, 3000)
+
 
 server.listen(3001, function() {
   console.log((new Date()) + ' Server is listening on', server.address());
