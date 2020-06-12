@@ -10,7 +10,7 @@ var promisify = require('./lib/promisify');
 module.exports = Adapter;
 
 function Adapter(opts, callback) {
-  console.log('remote-stream: opts: ', opts)
+  // console.log('remote-stream: opts: ', opts)
   var adapter = this;
   var cb = once(callback);
 

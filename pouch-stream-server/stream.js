@@ -52,7 +52,7 @@ Stream.prototype._transform = function _transform(data, enc, callback) {
     stream._protocolError(new Error('require an array'));
     callback();
   } else {
-    console.log('pouch-stream-server:_transform: data: ', data)
+    // console.log('pouch-stream-server:_transform: data: ', data)
     seq = data.shift();
     var dbName = data.shift();
     var db;
@@ -91,7 +91,7 @@ Stream.prototype._transform = function _transform(data, enc, callback) {
 };
 
 Stream.prototype._sendReply = function _sendReply(seq, err, reply) {
-  console.log("pouch-stream-server: _sendReply: ", [seq, err, reply])
+  // console.log("pouch-stream-server: _sendReply: ", [seq, err, reply])
   var error;
   if (err) {
     debug('replying with error: %j', err.message);

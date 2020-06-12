@@ -15,7 +15,7 @@ var interestingReconnectEvents = [
 module.exports = createClient;
 
 function createClient(createStream) {
-  console.log('createClient (pouch-stream-multi-sync)')
+  // console.log('createClient (pouch-stream-multi-sync)')
   var reconnect = Reconnect(createStream);
 
   var PouchDB;
@@ -137,7 +137,7 @@ function createClient(createStream) {
 
         interestingSyncEvents.forEach(function eachEvent(event) {
           dbSync.on(event, function onEvent(payload) {
-            console.log('pouch-stream-multi-sync:client:dbSync:: event: ', event, ', payload: ', payload)
+            // console.log('pouch-stream-multi-sync:client:dbSync:: event: ', event, ', payload: ', payload)
             spec.ret.emit(event, payload);
           });
         });

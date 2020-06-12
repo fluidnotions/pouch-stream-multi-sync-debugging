@@ -24,7 +24,7 @@ server.listen(3001, function() {
 });
 
 function onRequest(credentials, dbName, callback) {
-  console.log("dbName: ", dbName)
+  // console.log("dbName: ", dbName)
   if (dbName == 'todos-server') {
     callback(null, db);
   } else {
