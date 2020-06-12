@@ -4,6 +4,10 @@ import { createStore, applyMiddleware } from 'redux'
 import rootReducer from '../reducers'
 import PouchDB from 'pouchdb'
 import PouchSync from 'pouch-websocket-sync'
+import PouchDebug from 'pouchdb-debug'
+
+PouchDB.plugin(PouchDebug)
+PouchDB.debug.enable("pouch-stream-multi-sync")
 
 const syncEvents = ['change', 'paused', 'active', 'denied', 'complete', 'error'];
 const clientEvents = ['connect', 'disconnect', 'reconnect'];
@@ -18,6 +22,7 @@ const initialState = {
 export default function configureStore() {
   const db = new PouchDB('todos');
 
+  
   const syncClient = PouchSync.createClient()
 
   const sync = syncClient.
@@ -31,12 +36,14 @@ export default function configureStore() {
 
   syncEvents.forEach(function(event) {
     sync.on(event, function() {
+      console.log("sync.on: ", event)
       store.dispatch({type: types.SET_SYNC_STATE, text: event});
     })
   })
 
   clientEvents.forEach(function(event) {
     syncClient.on(event, function() {
+      console.log("syncClient.on: ", event)
       store.dispatch({type: types.SET_SYNC_STATE, text: event});
     })
   })

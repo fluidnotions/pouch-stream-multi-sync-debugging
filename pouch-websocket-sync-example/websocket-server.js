@@ -1,6 +1,7 @@
 const http = require('http');
 const PouchDB = require('pouchdb')
-  // .plugin(require('pouchdb-adapter-leveldb'))
+  .plugin(require('pouchdb-debug'))
+  PouchDB.debug.enable("pouch-stream-multi-sync")
 const PouchSync = require('pouch-websocket-sync');
 
 const server = http.createServer();
@@ -12,7 +13,9 @@ wss.on('error', function(err) {
 
 const db = new PouchDB('todos-server');
 setInterval(() => {
-  db.allDocs({ include_docs: true }).then(console.log)
+  db.allDocs({ include_docs: true }).then(res => {
+    console.log("res.rows: ", JSON.stringify(res.rows))
+  })
 }, 3000)
 
 

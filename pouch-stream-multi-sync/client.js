@@ -15,6 +15,7 @@ var interestingReconnectEvents = [
 module.exports = createClient;
 
 function createClient(createStream) {
+  console.log('createClient (pouch-stream-multi-sync)')
   var reconnect = Reconnect(createStream);
 
   var PouchDB;
@@ -131,10 +132,12 @@ function createClient(createStream) {
           remote: remote,
         });
         debug('syncing %j to remote %j', spec.db._db_name, remoteDB._db_name);
-        dbSync = spec.dbSync = PouchDB.sync(spec.db, remoteDB, {live: true});
+        // dbSync = spec.dbSync = PouchDB.sync(spec.db, remoteDB, {live: true, retry: true}); //this results in the sync ending up in paused mode
+        dbSync = spec.dbSync = PouchDB.sync(spec.db, remoteDB, {live: true}); //this results in an error
 
         interestingSyncEvents.forEach(function eachEvent(event) {
           dbSync.on(event, function onEvent(payload) {
+            console.log('pouch-stream-multi-sync:client:dbSync:: event: ', event, ', payload: ', payload)
             spec.ret.emit(event, payload);
           });
         });

@@ -23,6 +23,7 @@ module.exports = function Stream(callbacks, opts) {
   }
 
   function _write(data, encoding, callback) {
+    console.log('pouch-remote-stream:_write: ', [data, encoding, callback])
     debug('_write', data);
     var seq = data[0];
     if (seq === '_event') {
