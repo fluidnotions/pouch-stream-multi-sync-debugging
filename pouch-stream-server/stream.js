@@ -52,6 +52,7 @@ Stream.prototype._transform = function _transform(data, enc, callback) {
     stream._protocolError(new Error('require an array'));
     callback();
   } else {
+    console.log('pouch-stream-server:_transform: data: ', data)
     seq = data.shift();
     var dbName = data.shift();
     var db;

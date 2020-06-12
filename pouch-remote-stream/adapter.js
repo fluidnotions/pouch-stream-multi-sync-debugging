@@ -10,6 +10,7 @@ var promisify = require('./lib/promisify');
 module.exports = Adapter;
 
 function Adapter(opts, callback) {
+  console.log('remote-stream: opts: ', opts)
   var adapter = this;
   var cb = once(callback);
 
@@ -23,7 +24,7 @@ function Adapter(opts, callback) {
   remote = opts.remote.recreate();
   debug('haz created remote');
 
-  this._name = opts.originalName;
+  this._name = opts.name;
   this.skipDependentDatabase = true;
 
   this.type = type;
@@ -50,7 +51,7 @@ function Adapter(opts, callback) {
     return promisify(function promisified() {
       debug('calling %s, (%j)', method, arguments);
       var args = parseArgs(arguments);
-      remote.invoke(opts.originalName, method, args, extractCB(args));
+      remote.invoke(opts.name, method, args, extractCB(args));
     });
   }
 
@@ -63,7 +64,7 @@ function Adapter(opts, callback) {
 
     var listener = new EventEmitter();
     var id = remote.addListener(listener);
-    remote.invoke(opts.originalName, '_changes', [id, options]);
+    remote.invoke(opts.name, '_changes', [id, options]);
 
     listener.cancel = cancel;
 
@@ -95,7 +96,7 @@ function Adapter(opts, callback) {
   }
 
   function info(infocb) {
-    remote.invoke(opts.originalName, '_info', [], function onInvokeResponse(err, response) {
+    remote.invoke(opts.name, '_info', [], function onInvokeResponse(err, response) {
       /* istanbul ignore if */
       if (err) {
         infocb(err);

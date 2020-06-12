@@ -13,6 +13,7 @@ module.exports = function DBs() {
   function add(name, db) {
     debug('adding database named %j', name);
     dbs[name] = db;
+    dbs[db.prefix + name] = db;
   }
 
   function find(name) {

@@ -15,6 +15,8 @@ function createServer(onDatabase) {
   channelServer.on('request', onRequest);
 
   function onRequest(req) {
+    debugger
+    console.log('pouch-stream-multi-sync::onRequest: ', req)
     var database = req.payload.database;
     var credentials = req.payload.credentials;
 
@@ -23,6 +25,7 @@ function createServer(onDatabase) {
     onDatabase.call(null, credentials, database, callback);
 
     function callback(err, db) {
+      console.log("marl::1")
       if (err) {
         req.deny(err.message || /* istanbul ignore next */ err);
       } else {

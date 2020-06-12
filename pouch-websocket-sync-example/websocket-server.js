@@ -12,11 +12,11 @@ wss.on('error', function(err) {
 });
 
 const db = new PouchDB('todos-server');
-setInterval(() => {
-  db.allDocs({ include_docs: true }).then(res => {
-    console.log("res.rows: ", JSON.stringify(res.rows))
-  })
-}, 3000)
+// setInterval(() => {
+//   db.allDocs({ include_docs: true }).then(res => {
+//     console.log("res.rows: ", JSON.stringify(res.rows))
+//   })
+// }, 3000)
 
 
 server.listen(3001, function() {
@@ -24,6 +24,7 @@ server.listen(3001, function() {
 });
 
 function onRequest(credentials, dbName, callback) {
+  console.log("dbName: ", dbName)
   if (dbName == 'todos-server') {
     callback(null, db);
   } else {
