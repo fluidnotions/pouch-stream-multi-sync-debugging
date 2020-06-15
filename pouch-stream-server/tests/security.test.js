@@ -55,14 +55,14 @@ describe('Stream server', function() {
           [0,
             [
               {
-                message: 'No method named _db_name',
+                message: 'No method named name',
                 status: undefined,
                 name: 'Error',
                 error: undefined,
               }, undefined ]]);
         done();
       });
-      stream.write([0, 'somedb', '_db_name', []]);
+      stream.write([0, 'somedb', 'name', []]);
     });
   });
 
@@ -105,7 +105,7 @@ describe('Stream server', function() {
           [0,
             [
               {
-                message: 'No method named _db_name',
+                message: 'No method named name',
                 status: undefined,
                 name: 'Error',
                 error: undefined,
@@ -124,10 +124,10 @@ describe('Stream server', function() {
           done();
         });
 
-        stream.write([1, 'db3', '_db_name', []]);
+        stream.write([1, 'db3', 'name', []]);
       });
 
-      stream.write([0, 'db2', '_db_name']);
+      stream.write([0, 'db2', 'name']);
     });
   });
 });

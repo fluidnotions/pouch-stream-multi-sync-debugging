@@ -14200,10 +14200,10 @@
 
 	  function sync(db, _options) {
 	    var options = extend({}, {
-	      remoteName: db._db_name,
+	      remoteName: db.name,
 	    }, _options);
 
-	    debug('sync for db %s, options = %j', db._db_name, options);
+	    debug('sync for db %s, options = %j', db.name, options);
 
 	    /* istanbul ignore next */
 	    if (! options.remoteName) {
@@ -14274,7 +14274,7 @@
 	          adapter: 'remote',
 	          remote: remote,
 	        });
-	        debug('syncing %j to remote %j', spec.db._db_name, remoteDB._db_name);
+	        debug('syncing %j to remote %j', spec.db.name, remoteDB.name);
 	        // dbSync = spec.dbSync = PouchDB.sync(spec.db, remoteDB, {live: true, retry: true}); //this results in the sync ending up in paused mode
 	        dbSync = spec.dbSync = PouchDB.sync(spec.db, remoteDB, {live: true}); //this results in an error
 

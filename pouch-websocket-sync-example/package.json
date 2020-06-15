@@ -6,7 +6,9 @@
     "start": "node server.js",
     "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register --require ./test/setup.js",
     "test:watch": "npm test -- --watch",
-    "localwebpack": "./node_modules/.bin/webpack"
+    "localwebpack": "./node_modules/.bin/webpack",
+    "minify": "terser --compress --mangle -- ./dist/pouch-ws-sync.js >> ./dist/pouch-ws-sync.min.js",
+    "bb": "npm run localwebpack && npm run minify"
   },
   "repository": {
     "type": "git",
